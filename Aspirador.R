@@ -11,7 +11,7 @@ Aspirador <- function(desc = NULL, pai = NULL){
   assign("h", Inf, envir = e)
   assign("f", Inf, envir = e)
   
-  class(e) <- c("Canibais", "Estado")
+  class(e) <- c("Aspirador", "Estado")
 
   return(e)
 }
@@ -34,7 +34,6 @@ print.Aspirador <- function(obj) {
 ## Sobrecarga da função genérica "heuristica", definida por Estado.R
 heuristica.Aspirador <- function(atual){
   
-  ## h(obj) = (2 * K) +1
   if(is.null(atual$desc))
     return(Inf)
     
@@ -113,14 +112,16 @@ geraFilhos.Aspirador <- function(obj) {
                       else
                         0 ## senão é compatível
                     })
+                    
+  if (!all(incompativeis == 0)){
+      ## mantém no vetor apenas os que são incompatíveis
+      incompativeis <- incompativeis[incompativeis != 0]
+      
+      ## remove estados filhos incompatíveis
+      filhosDesc <- filhosDesc[-incompativeis]
+  }
   
-  ## mantém no vetor apenas os que são incompatíveis
-  incompativeis <- incompativeis[incompativeis != 0]
-  
-  ## remove estados filhos incompatíveis
-  filhosDesc <- filhosDesc[-incompativeis]
-  
-  ## gera os objetos Canibais para os filhos
+  ## gera os objetos Aspirador para os filhos
   for(filhoDesc in filhosDesc){
     filho <- Aspirador(desc = filhoDesc, pai = obj)
     filho$h <- heuristica(filho)
