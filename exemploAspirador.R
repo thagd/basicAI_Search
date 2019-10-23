@@ -2,7 +2,7 @@ source("Aspirador.R")
 source("buscaDesinformada.R")
 source("buscaInformada.R")
 
-inicial <- Aspirador(desc = c(Q1 = 1, Q2 = 0, Q3 = 1, Q4 = 1, A = 1))
+inicial <- Aspirador(desc = c(Q1 = 1, Q2 = 0, Q3 = 1, Q4 = 1, A = 2))
 
 objetivo <- Aspirador()
 objetivo$desc <- c(Q1 = 0, Q2 = 0, Q3 = 0, Q4 = 0, A = 1)
