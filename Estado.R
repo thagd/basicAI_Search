@@ -39,6 +39,18 @@ heuristica.default <- function(atual, ...) {
   return(NULL)
 }
 
+## Criação do método genérico "custo"
+custo <- function(atual, ...){
+    UseMethod("custo")
+}
+
+## Função padrão para o método genérico "custo"
+## Deve ser implementada para o problema específico
+custo.default <- function(atual, ...) {
+  print("Funcao Generica. Defina o custo para o seu problema!\n")
+  return(NULL)
+}
+
 ## Criação do método genérico "geraFilhos"
 geraFilhos <- function(obj) {
   UseMethod("geraFilhos")
